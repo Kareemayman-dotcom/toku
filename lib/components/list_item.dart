@@ -3,23 +3,52 @@ import 'package:flutter/material.dart';
 import 'package:toku/models/item.dart';
 import 'package:toku/models/phrase.dart';
 
-class ListItem extends StatelessWidget {
-  const ListItem(
-      {Key? key,
-      required this.item,
-      required this.color,
-      required this.itemType})
-      : super(key: key);
-  final Item item;
+class ListItem extends StatefulWidget {
+  const ListItem({
+    Key? key,
+    required this.item,
+    required this.color,
+    required this.itemType,
+  }) : super(key: key);
 
+  final Item item;
   final Color color;
   final String itemType;
+
+  @override
+  _ListItemState createState() => _ListItemState();
+}
+
+class _ListItemState extends State<ListItem> {
+  late AudioPlayer _audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose(); // Release resources when the widget is disposed
+    super.dispose();
+  }
+
+  void playAudio(String audioPath) async {
+    try {
+      await _audioPlayer.stop(); // Stop the currently playing audio
+      await _audioPlayer.play(AssetSource(audioPath));
+    } catch (ex) {
+      print(ex);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return item.image == null
+    return widget.item.image == null
         ? Container(
             height: 100,
-            color: color,
+            color: widget.color,
             child: Row(
               children: [
                 Padding(
@@ -29,14 +58,14 @@ class ListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        item.jpName,
+                        widget.item.jpName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                         ),
                       ),
                       Text(
-                        item.enName,
+                        widget.item.enName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -50,19 +79,7 @@ class ListItem extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    try {
-                      AudioPlayer player = AudioPlayer();
-
-                      player.play(
-                        AssetSource("sounds/$itemType/${item.sound}"),
-                      );
-
-                      // AudioCache player =
-                      //     AudioCache(prefix: 'assets/sounds/$itemType/');
-                      // player.play(item.sound);
-                    } catch (ex) {
-                      print(ex);
-                    }
+                    playAudio("sounds/${widget.itemType}/${widget.item.sound}");
                   },
                   icon: Icon(
                     Icons.play_arrow,
@@ -75,11 +92,13 @@ class ListItem extends StatelessWidget {
           )
         : Container(
             height: 100,
-            color: color,
+            color: widget.color,
             child: Row(
               children: [
                 Container(
-                    color: Color(0xffFFF6DC), child: Image.asset(item.image!)),
+                  color: Color(0xffFFF6DC),
+                  child: Image.asset(widget.item.image!),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 16),
                   child: Column(
@@ -87,14 +106,14 @@ class ListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        item.jpName,
+                        widget.item.jpName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                         ),
                       ),
                       Text(
-                        item.enName,
+                        widget.item.enName,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -108,17 +127,7 @@ class ListItem extends StatelessWidget {
                 ),
                 IconButton(
                   onPressed: () {
-                    try {
-                      AudioPlayer player = AudioPlayer();
-                      player.play(
-                        AssetSource("sounds/$itemType/${item.sound}"),
-                      );
-                      // AudioCache player =
-                      //     AudioCache(prefix: 'assets/sounds/$itemType/');
-                      // player.play(item!.sound);
-                    } catch (ex) {
-                      print(ex);
-                    }
+                    playAudio("sounds/${widget.itemType}/${widget.item.sound}");
                   },
                   icon: Icon(
                     Icons.play_arrow,
@@ -132,22 +141,51 @@ class ListItem extends StatelessWidget {
   }
 }
 
-class PhraseItem extends StatelessWidget {
-  const PhraseItem(
-      {Key? key,
-      required this.color,
-      required this.itemType,
-      required this.phrase})
-      : super(key: key);
+class PhraseItem extends StatefulWidget {
+  const PhraseItem({
+    Key? key,
+    required this.color,
+    required this.itemType,
+    required this.phrase,
+  }) : super(key: key);
 
   final Item phrase;
   final Color color;
   final String itemType;
+
+  @override
+  _PhraseItemState createState() => _PhraseItemState();
+}
+
+class _PhraseItemState extends State<PhraseItem> {
+  late AudioPlayer _audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose(); // Release resources when the widget is disposed
+    super.dispose();
+  }
+
+  void playAudio(String audioPath) async {
+    try {
+      await _audioPlayer.stop(); // Stop the currently playing audio
+      await _audioPlayer.play(AssetSource(audioPath));
+    } catch (ex) {
+      print(ex);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      color: color,
+      color: widget.color,
       child: Row(
         children: [
           Padding(
@@ -157,14 +195,14 @@ class PhraseItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  phrase.jpName,
+                  widget.phrase.jpName,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                   ),
                 ),
                 Text(
-                  phrase.enName,
+                  widget.phrase.enName,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -178,14 +216,7 @@ class PhraseItem extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              try {
-                AudioPlayer player = AudioPlayer();
-                player.play(
-                  AssetSource("sounds/$itemType/${phrase.sound}"),
-                );
-              } catch (ex) {
-                print(ex);
-              }
+              playAudio("sounds/${widget.itemType}/${widget.phrase.sound}");
             },
             icon: Icon(
               Icons.play_arrow,
