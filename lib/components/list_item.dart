@@ -1,7 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:toku/models/item.dart';
-import 'package:toku/models/phrase.dart';
 
 class ListItem extends StatefulWidget {
   const ListItem({
@@ -59,14 +58,14 @@ class _ListItemState extends State<ListItem> {
                     children: [
                       Text(
                         widget.item.jpName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                         ),
                       ),
                       Text(
                         widget.item.enName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                         ),
@@ -74,14 +73,14 @@ class _ListItemState extends State<ListItem> {
                     ],
                   ),
                 ),
-                Spacer(
+                const Spacer(
                   flex: 1,
                 ),
                 IconButton(
                   onPressed: () {
                     playAudio("sounds/${widget.itemType}/${widget.item.sound}");
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.play_arrow,
                     color: Colors.white,
                     size: 28,
@@ -96,7 +95,7 @@ class _ListItemState extends State<ListItem> {
             child: Row(
               children: [
                 Container(
-                  color: Color(0xffFFF6DC),
+                  color: const Color(0xffFFF6DC),
                   child: Image.asset(widget.item.image!),
                 ),
                 Padding(
@@ -107,14 +106,14 @@ class _ListItemState extends State<ListItem> {
                     children: [
                       Text(
                         widget.item.jpName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                         ),
                       ),
                       Text(
                         widget.item.enName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                         ),
@@ -122,14 +121,14 @@ class _ListItemState extends State<ListItem> {
                     ],
                   ),
                 ),
-                Spacer(
+                const Spacer(
                   flex: 1,
                 ),
                 IconButton(
                   onPressed: () {
                     playAudio("sounds/${widget.itemType}/${widget.item.sound}");
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.play_arrow,
                     color: Colors.white,
                     size: 28,
@@ -196,14 +195,14 @@ class _PhraseItemState extends State<PhraseItem> {
               children: [
                 Text(
                   widget.phrase.jpName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                   ),
                 ),
                 Text(
                   widget.phrase.enName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                   ),
@@ -211,14 +210,14 @@ class _PhraseItemState extends State<PhraseItem> {
               ],
             ),
           ),
-          Spacer(
+          const Spacer(
             flex: 1,
           ),
           IconButton(
             onPressed: () {
               playAudio("sounds/${widget.itemType}/${widget.phrase.sound}");
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.play_arrow,
               color: Colors.white,
               size: 28,
