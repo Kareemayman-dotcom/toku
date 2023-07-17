@@ -11,10 +11,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFEF6DB),
+      backgroundColor: const Color(0xffFEF6DB),
       appBar: AppBar(
-        backgroundColor: Color(0xff46322B),
-        title: Text('Toku'),
+        backgroundColor: const Color(0xff46322B),
+        title: const Text('Toku'),
       ),
       body: Column(
         children: [
@@ -22,22 +22,22 @@ class HomePage extends StatelessWidget {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: ( context) {
-                return NumbersPage();
+                return const NumbersPage();
               }));
             },
             text: 'Numbers',
-            color: Color(0xffEF9235),
+            color: const Color(0xffEF9235),
           ),
           Category(
             onTap: () 
             {
                  Navigator.push(context,
                   MaterialPageRoute(builder: ( context) {
-                return FamilyMembersPage();
+                return const FamilyMembersPage();
               }));
             },
             text: 'FamilyMembers',
-            color: Color(0xff558B37),
+            color: const Color(0xff558B37),
           ),
           Category(
             onTap: ()
@@ -45,11 +45,11 @@ class HomePage extends StatelessWidget {
               
                  Navigator.push(context,
                   MaterialPageRoute(builder: ( context) {
-                return ColorsPage();
+                return const ColorsPage();
               }));
             },
             text: 'Colors',
-            color: Color(0xff79359F),
+            color: const Color(0xff79359F),
           ),
           Category(
             onTap: ()
@@ -57,11 +57,11 @@ class HomePage extends StatelessWidget {
               
                  Navigator.push(context,
                   MaterialPageRoute(builder: ( context) {
-                return PhrasesPage();
+                return const PhrasesPage();
               }));
             },
             text: 'Phrases',
-            color: Color(0xff50ADC7),
+            color: const Color(0xff50ADC7),
           ),
         ],
       ),

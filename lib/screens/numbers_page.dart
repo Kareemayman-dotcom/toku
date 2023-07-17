@@ -72,15 +72,15 @@ class NumbersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Numbers'),
-        backgroundColor: Color(0xff46322B),
+        title: const Text('Numbers'),
+        backgroundColor: const Color(0xff46322B),
       ),
       body: ListView.builder(
         itemCount: numbers.length,
         itemBuilder: (context, index) {
           return ListItem(
             itemType: 'numbers',
-            item: numbers[index] , color: Color(0xffEF9235),);
+            item: numbers[index] , color: const Color(0xffEF9235),);
         },
       ),
     );
@@ -91,7 +91,7 @@ class NumbersPage extends StatelessWidget {
     for (int i = 0; i < numbers.length; i++) {
       itemsList.add(ListItem(
         itemType: 'numbers',
-        item: numbers[i] ,color: Color(0xffEF9235),),);
+        item: numbers[i] ,color: const Color(0xffEF9235),),);
     }
 
     return itemsList;
